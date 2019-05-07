@@ -1,0 +1,33 @@
+{
+  "name": "classicbot",
+  "version": "0.0.1",
+  "description": "A WOW Classic Discord bot for finding things.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tristanwagner/classicbot.git"
+  },
+  "keywords": [
+    "wow",
+    "classic",
+    "discord",
+    "bot",
+    "js"
+  ],
+  "author": "Tristan WAGNER <t.wagner66250@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tristanwagner/classicbot/issues"
+  },
+  "homepage": "https://github.com/tristanwagner/classicbot#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "fast-csv": "^2.5.0",
+    "fuzzball": "^1.2.0",
+    "webshot": "^0.18.0"
+  }
+}
