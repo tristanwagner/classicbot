@@ -8,13 +8,17 @@ const webshot = require('webshot')
 
 const cachePath = './cache/'
 
+const classicdb = 'https://classicdb.ch/'
+
+let dbpath = process.env.DB || classicdb
+
 const npc = {
   type: 'npc',
   commands: ['!findnpc', '!fn', '!n'],
   id: 'entry',
   name: 'name',
   fp: './data/npcs.csv',
-  db: 'https://classicdb.ch/?npc=',
+  db: dbpath.concat('?npc='),
   data: []
 }
 
@@ -24,7 +28,7 @@ const item = {
   id: 'entry',
   name: 'name',
   fp: './data/items.csv',
-  db: 'https://classicdb.ch/?item=',
+  db: dbpath.concat('?item='),
   data: []
 }
 
@@ -34,7 +38,7 @@ const quest = {
   id: 'entry',
   name: 'Title',
   fp: './data/quests.csv',
-  db: 'https://classicdb.ch/?quest=',
+  db: dbpath.concat('?quest='),
   data: []
 }
 
@@ -44,8 +48,8 @@ const dungeon = {
   id: 'id',
   name: 'name',
   fp: './data/dungeons.csv',
-  db: 'https://classicdb.ch/?zone=',
-  dbq: 'https://classicdb.ch/?quests=2.',
+  db: dbpath.concat('?zone='),
+  dbq: dbpath.concat('?quests=2.'),
   data: []
 }
 
@@ -74,6 +78,9 @@ client.on('message', async msg => {
       break
     case dungeon.commands.some(command => msg.content.startsWith(command)):
       handleDungeonSearch(query, msg)
+      break
+    case msg.content.startsWith('!help'):
+      handleHelp(msg)
       break
     default:
       break
@@ -206,6 +213,10 @@ const handleItemSearch = async (query, msg) => {
       }
     }
   })
+}
+
+const handleHelp = (msg) => {
+  msg.reply('incoming!')
 }
 
 const initData = () => {

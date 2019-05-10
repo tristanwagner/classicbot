@@ -6,41 +6,32 @@ You can find a demo bot [here](https://discordapp.com/oauth2/authorize?&client_i
 
 ## Install
 
-You will need NodeJS and NPM in order to run this bot on your machine
+You will need NodeJS and NPM in order to run this bot on your machine.
 
-Clone repo
+#####Clone repo
 
 `
 git clone https://github.com/tristanwagner/classicbot && cd classicbot/
 `
 
-Load dependencies
+#####Load dependencies
 
 `
 npm install
 `
 
-Start bot
+#####Configure bot
 
-`
-TOKEN=<your token here> npm start
-`
-
-You can also edit the npm start command to automatically use your token
-
-```
-vim package.json
-
-- "start": "node index.js",
-
-+ "start": "TOKEN=<your token here> node index.js",
-
-npm start
-```
-or create a .env file that contains your token
+create a .env file that contains your token
 
 `
 echo 'TOKEN=<your token here>' > .env
+`
+
+#####Start bot
+
+`
+npm start
 `
 
 ## Commands
@@ -53,6 +44,8 @@ Search for a quest
 !fq <name>
 
 !findquest <name>
+
+!q the den
 ```
 
 Search for an item
@@ -63,14 +56,27 @@ Search for an item
 !fi <name>
 
 !finditem <name>
+
+!i thunderfury
 ```
 
 Search for an NPC 
 
 ```
-!fn <name>
-
 !n <name>
 
+!fn <name>
+
 !findnpc <name>
+
+!n thrall
 ```
+
+Search for a dungeon with related quests: 
+
+```
+!d <name>
+
+!d sm
+```
+
