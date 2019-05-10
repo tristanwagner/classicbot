@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Client, Attachment, RichEmbed } = require('discord.js')
 const client = new Client()
 const csv = require('fast-csv')
@@ -230,8 +231,16 @@ const takeSnapshot = (id) => {
   })
 }
 
-//pull the trigger
-initData()
-  .then(() => {
-    return client.login('NTc1MTAwMzExOTkyMTM5ODA2.XNDD5w.QNx4SNd3aLfusx4AWCUrNrWCHWQ')
-  })
+const run = () => {
+  initData()
+    .then(() => {
+      return client.login(process.env.TOKEN)
+    })
+    .catch(error => {
+      console.log(error)
+      run()
+    })
+}
+
+//pull the trigger 
+run()
