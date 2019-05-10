@@ -38,7 +38,18 @@ const quest = {
   data: []
 }
 
-const entities = [npc, item, quest]
+const dungeon = {
+  type: 'dungeon',
+  commands: ['!finddungeon', '!fd', '!d'],
+  id: 'id',
+  name: 'name',
+  fp: './data/dungeons.csv',
+  db: 'https://classicdb.ch/?zone=',
+  dbq: 'https://classicdb.ch/?quests=2.',
+  data: []
+}
+
+const entities = [npc, item, quest, dungeon]
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -60,6 +71,9 @@ client.on('message', async msg => {
       break
     case item.commands.some(command => msg.content.startsWith(command)):
       await handleItemSearch(query, msg)
+      break
+    case dungeon.commands.some(command => msg.content.startsWith(command)):
+      handleDungeonSearch(query, msg)
       break
     default:
       break
@@ -117,6 +131,32 @@ const handleQuestSearch = (query, msg) => {
       footer: {
         icon_url: client.user.avatarURL,
         text: 'Quest Search'
+      }
+    }
+  })
+}
+
+const handleDungeonSearch = (query, msg) => {
+  // if query is less than 4 chars its probably an abreviation..
+  let matches = query.length < 4 ? findMatch(query, dungeon, choice => choice.surname) : findMatch(query, dungeon)
+  let foundDungeon = matches[0]
+  let relatedQuests = quest.data.filter(q => q.ZoneOrSort === foundDungeon.id)
+  msg.reply({
+    embed: {
+      color: 3447003,
+      title: foundDungeon.name,
+      url: dungeon.db.concat(foundDungeon.id),
+      description: `Found ${relatedQuests.length} quest${relatedQuests.length > 1 ? `s related to ${foundDungeon.name}` : ''} :\n${dungeon.dbq.concat(foundDungeon.id)}\n`,
+      fields: relatedQuests.map((match, index) => {
+        return {
+          name: `${index + 1}. ${match[quest.name]}`,
+          value: `Min level [${match.MinLevel}]\n${quest.db.concat(match[quest.id])}`
+        }
+      }),
+      timestamp: new Date(),
+      footer: {
+        icon_url: client.user.avatarURL,
+        text: 'Dungeon Search'
       }
     }
   })
@@ -206,8 +246,8 @@ const fetchEntityDataToObject = ({ fp, data }) => {
   })
 }
 
-const findMatch = (str, entity) => {
-  let matches = fuzz.extract(str, entity.data, { limit: 15, scorer: fuzz.WRatio, processor: choice => choice[entity.name] })
+const findMatch = (str, entity, processor) => {
+  let matches = fuzz.extract(str, entity.data, { limit: 15, scorer: fuzz.WRatio, processor: processor ? processor : choice => choice[entity.name] })
   //from [[{ choice }, score]] to [{ choice, score }]
   return matches.reduce((acc, curr, index) => {
     if (index === 0) acc = []

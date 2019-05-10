@@ -1,18 +1,20 @@
-719,Blackfathom Deeps
-1584,Blackrock Depths
-1583,Blackrock Spire
-2557,Dire Maul
-133,Gnomeregan
-2100,Maraudon
-2437,Ragefire Chasm
-722" class="open,Razorfen Downs
-491,Razorfen Kraul
-796,Scarlet Monastery
-2057,Scholomance
-209,Shadowfang Keep
-2017,Stratholme
-1581,The Deadmines
-717,The Stockade
-1337,Uldaman
-718,Wailing Caverns
-978,Zul'Farrak
+id,name,surname
+719,Blackfathom Deeps,bfd
+1584,Blackrock Depths,brd
+1583,Blackrock Spire,brs
+2557,Dire Maul,dm
+133,Gnomeregan,gnome
+2100,Maraudon,md
+2437,Ragefire Chasm,rfc
+722,Razorfen Downs,rfd
+1717,Razorfen Kraul,rfk
+796,Scarlet Monastery,sm
+2057,Scholomance,scholo
+209,Shadowfang Keep,sfk
+2017,Stratholme,strat
+1581,The Deadmines,dm
+717,The Stockade,stock
+1337,Uldaman,ulda
+718,Wailing Caverns,wc
+978,Zul'Farrak,zf
+1417,Sunken Temple,st
