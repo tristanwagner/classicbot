@@ -8,7 +8,7 @@ You can find a demo bot [here](https://discordapp.com/oauth2/authorize?&client_i
 
 You will need NodeJS and NPM in order to run this bot on your machine.
 
-#####Clone repo
+##### Clone repo
 
 `
 git clone https://github.com/tristanwagner/classicbot && cd classicbot/
