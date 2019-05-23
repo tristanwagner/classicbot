@@ -14,13 +14,13 @@ You will need NodeJS and NPM in order to run this bot on your machine.
 git clone https://github.com/tristanwagner/classicbot && cd classicbot/
 `
 
-#####Load dependencies
+##### Load dependencies
 
 `
 npm install
 `
 
-#####Configure bot
+##### Configure bot
 
 create a .env file that contains your token
 
@@ -28,7 +28,7 @@ create a .env file that contains your token
 echo 'TOKEN=<your token here>' > .env
 `
 
-#####Start bot
+##### Start bot
 
 `
 npm start
