@@ -29,6 +29,6 @@
     "dotenv": "^8.0.0",
     "fast-csv": "^4.3.6",
     "fuzzball": "^1.2.0",
-    "webshot": "^0.18.0"
+    "webshot-node": "^0.18.3"
   }
 }

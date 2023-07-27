@@ -1,10 +1,20 @@
 require('dotenv').config()
-const { Client, Attachment, RichEmbed } = require('discord.js')
+const { Client } = require('discord.js')
 const client = new Client()
 const csv = require('fast-csv')
 const fs = require('fs')
 const fuzz = require('fuzzball')
-const webshot = require('webshot')
+const webshot = require('webshot-node')
+
+// specific to classicdb.ch
+const wsOptions = {
+  // max-width: min-content; doesn't work for some reasons
+  customCSS: `.tooltip {
+    visibility: visible !important;
+    max-width: 350px;
+  }`,
+  captureSelector: '.tooltip',
+}
 
 const cachePath = './cache/'
 
@@ -235,7 +245,7 @@ const fetchEntityDataToObject = ({ fp, data }) => {
     let keys = []
 
     csv
-      .fromStream(stream, {})
+      .parseStream(stream, {})
       .on('data', _data => {
         if (i === 0) {
           keys = _data
@@ -272,7 +282,7 @@ const findMatch = (str, entity, processor) => {
 const takeSnapshot = (id) => {
   console.log('Taking snapshot for item id:', id, 'in url', item.db.concat(id))
   return new Promise((resolve, reject) => {
-    webshot(item.db.concat(id), cachePath.concat(id, '.png'), { captureSelector: '.tooltip' }, (err) => {
+    webshot(item.db.concat(id), cachePath.concat(id, '.png'), wsOptions, (err) => {
       if (err) {
         console.log('Error while taking snapshot for item id', id, err)
         reject(err)
@@ -293,5 +303,5 @@ const run = () => {
     })
 }
 
-//pull the trigger 
+//pull the trigger
 run()
