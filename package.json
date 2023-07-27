@@ -27,7 +27,7 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "dotenv": "^8.0.0",
-    "fast-csv": "^2.5.0",
+    "fast-csv": "^4.3.6",
     "fuzzball": "^1.2.0",
     "webshot": "^0.18.0"
   }
